@@ -1,0 +1,21 @@
+﻿<Window x:Class="ASKOmaster.Settings"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ASKOmaster"
+        mc:Ignorable="d"
+        Title="Settings" Height="400" Width="800">
+    <Grid>
+        <Button x:Name="btnCloseSettings" Content="Close" HorizontalAlignment="Left" Margin="144,311,0,0" VerticalAlignment="Top" Click="btnCloseSettings_Click" Height="27" Width="84" FontSize="16"/>
+        <Grid x:Name="LoginTest" HorizontalAlignment="Left" Margin="39,36,0,0" VerticalAlignment="Top" Width="295" Height="233" Background="#FFF0F0F0">
+            <TextBox x:Name="UsernameInput" HorizontalAlignment="Left" Margin="137,29,0,0" VerticalAlignment="Top" Width="120" FontSize="14" Height="22"/>
+            <TextBox x:Name="PasswordInput" HorizontalAlignment="Left" Margin="137,67,0,0" VerticalAlignment="Top" Width="120" FontSize="14" Height="22"/>
+            <Button x:Name="btnTestLogin" Content="Test Login" HorizontalAlignment="Left" VerticalAlignment="Top" Click="btnTestLogin_Click" Height="32" Width="106" Margin="30,117,0,0" FontSize="16"/>
+            <TextBlock x:Name="LoginTestResult" HorizontalAlignment="Left" Margin="30,174,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+            <Button x:Name="btnResetLogin" Content="Reset Login" HorizontalAlignment="Left" Margin="151,117,0,0" VerticalAlignment="Top" Height="32" Width="106" Click="btnResetLogin_Click" FontSize="16"/>
+            <Label x:Name="UsernameLabel" Content="SAG Username" HorizontalAlignment="Left" Margin="30,22,0,0" VerticalAlignment="Top" FontSize="14"/>
+            <Label x:Name="PasswordLabel" Content="SAG Password" HorizontalAlignment="Left" Margin="30,64,0,0" VerticalAlignment="Top" FontSize="14"/>
+        </Grid>
+    </Grid>
+</Window>

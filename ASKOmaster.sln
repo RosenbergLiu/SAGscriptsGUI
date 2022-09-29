@@ -1,0 +1,54 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32819.101
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASKOmaster", "ASKOmaster.csproj", "{54D82EAD-5973-4C82-932B-020BA38A847D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{22E9AE36-2C2A-4444-B096-E5FC580B374E}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|ARM = Debug|ARM
+		Debug|ARM64 = Debug|ARM64
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|ARM = Release|ARM
+		Release|ARM64 = Release|ARM64
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{54D82EAD-5973-4C82-932B-020BA38A847D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54D82EAD-5973-4C82-932B-020BA38A847D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54D82EAD-5973-4C82-932B-020BA38A847D}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{54D82EAD-5973-4C82-932B-020BA38A847D}.Debug|ARM.Build.0 = Debug|Any CPU
+		{54D82EAD-5973-4C82-932B-020BA38A847D}.Debug|ARM64.ActiveCfg = Debug|Any CPU
+		{54D82EAD-5973-4C82-932B-020BA38A847D}.Debug|ARM64.Build.0 = Debug|Any CPU
+		{54D82EAD-5973-4C82-932B-020BA38A847D}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{54D82EAD-5973-4C82-932B-020BA38A847D}.Debug|x64.Build.0 = Debug|Any CPU
+		{54D82EAD-5973-4C82-932B-020BA38A847D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{54D82EAD-5973-4C82-932B-020BA38A847D}.Debug|x86.Build.0 = Debug|Any CPU
+		{54D82EAD-5973-4C82-932B-020BA38A847D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54D82EAD-5973-4C82-932B-020BA38A847D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54D82EAD-5973-4C82-932B-020BA38A847D}.Release|ARM.ActiveCfg = Release|Any CPU
+		{54D82EAD-5973-4C82-932B-020BA38A847D}.Release|ARM.Build.0 = Release|Any CPU
+		{54D82EAD-5973-4C82-932B-020BA38A847D}.Release|ARM64.ActiveCfg = Release|Any CPU
+		{54D82EAD-5973-4C82-932B-020BA38A847D}.Release|ARM64.Build.0 = Release|Any CPU
+		{54D82EAD-5973-4C82-932B-020BA38A847D}.Release|x64.ActiveCfg = Release|Any CPU
+		{54D82EAD-5973-4C82-932B-020BA38A847D}.Release|x64.Build.0 = Release|Any CPU
+		{54D82EAD-5973-4C82-932B-020BA38A847D}.Release|x86.ActiveCfg = Release|Any CPU
+		{54D82EAD-5973-4C82-932B-020BA38A847D}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2639CC05-07A9-4064-9736-AA7C4C57AF28}
+	EndGlobalSection
+EndGlobal

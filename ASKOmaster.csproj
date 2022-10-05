@@ -2,9 +2,19 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net6.0-windows</TargetFramework>
+    <TargetFramework>net6.0-windows10.0.17763.0</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
+    <UseWindowsForms>False</UseWindowsForms>
+    <IsPublishable>False</IsPublishable>
+    <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+    <Authors>Xiangyu Liu</Authors>
+    <Company>ROSHAN CREATIVITY</Company>
+    <Product>SparePartsScripts</Product>
+    <Description>SparePartsScripts</Description>
+    <Copyright>Xiangyu Liu</Copyright>
+    <Title>SparePartsScripts</Title>
+    <PackageId>SparePartsScripts</PackageId>
   </PropertyGroup>
 
   <ItemGroup>

@@ -15,13 +15,13 @@
         <ListBox x:Name="PartsList" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="319,103,50,47"/>
         <TextBox x:Name="BarCode" HorizontalAlignment="Left" Margin="36,127,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="246" Height="34" FontSize="20"/>
         <Button x:Name="btnAdd" Content="Add" HorizontalAlignment="Left" Margin="168,166,0,0" VerticalAlignment="Top" IsDefault="True" Width="114" Click="btnAdd_Click" Height="34" FontSize="18"/>
-        <Button x:Name="btnDel" Content="Delete" HorizontalAlignment="Left" Margin="319,41,0,0" VerticalAlignment="Top" Height="34" Width="115" FontSize="18" Click="btnDel_Click"/>
+        <Button x:Name="btnDel" Content="Delete" HorizontalAlignment="Left" Margin="319,57,0,0" VerticalAlignment="Top" Height="34" Width="115" FontSize="18" Click="btnDel_Click"/>
         <TextBox x:Name="PartNum" HorizontalAlignment="Left" Margin="36,231,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="246" Height="33" FontSize="20"/>
-        <Button x:Name="btnClear" Content="Clear" HorizontalAlignment="Left" Margin="470,41,0,0" VerticalAlignment="Top" Height="34" Width="80" FontSize="18" Click="btnClear_Click"/>
+        <Button x:Name="btnClear" Content="Clear" HorizontalAlignment="Left" Margin="439,57,0,0" VerticalAlignment="Top" Height="34" Width="80" FontSize="18" Click="btnClear_Click"/>
         <Button x:Name="btnUpdate" Content="Update" HorizontalAlignment="Left" Margin="168,270,0,0" VerticalAlignment="Top" IsDefault="True" Width="114" Click="btnUpdate_Click" Height="34" FontSize="18"/>
         <Button x:Name="btnCancelU" Content="Cancel" HorizontalAlignment="Left" Margin="36,270,0,0" VerticalAlignment="Top" IsDefault="True" Width="80" Click="btnCancelU_Click" Height="34" FontSize="18"/>
-        <Button x:Name="btnRun" Content="Run" HorizontalAlignment="Left" Margin="94,694,0,0" VerticalAlignment="Top" Height="34" Width="148" FontSize="18" Click="btnRun_Click"/>
-        <ComboBox x:Name="Technicians" HorizontalAlignment="Left" Margin="94,655,0,0" VerticalAlignment="Top" Width="148" DropDownClosed="TechSelected" Height="34" FontSize="20"/>
-        <Label x:Name="PartsReturnLabel" Content="Parts Return" HorizontalAlignment="Left" Margin="110,57,0,0" VerticalAlignment="Top" FontSize="20"/>
+        <Button x:Name="btnRun" Content="Run" HorizontalAlignment="Left" Margin="85,689,0,0" VerticalAlignment="Top" Height="34" Width="148" FontSize="18" Click="btnRun_Click"/>
+        <ComboBox x:Name="Technicians" HorizontalAlignment="Left" Margin="85,650,0,0" VerticalAlignment="Top" Width="148" DropDownClosed="TechSelected" Height="34" FontSize="20"/>
+        <Label x:Name="PartsReturnLabel" Content="Parts Return" HorizontalAlignment="Left" Margin="101,47,0,0" VerticalAlignment="Top" FontSize="20"/>
     </Grid>
 </Window>

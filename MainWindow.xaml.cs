@@ -37,5 +37,9 @@ namespace ASKOmaster
             System.Windows.Window w = new PartReturn();
             w.Show();
         }
+
+        private void test_Click(object sender, RoutedEventArgs e)
+        {
+        }
     }
 }

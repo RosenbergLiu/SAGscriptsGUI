@@ -5,12 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ASKOmaster"
         mc:Ignorable="d"
-        Title="SetTrigger" Height="450" Width="200">
+        Title="SetTrigger" Height="400" Width="300">
     <Grid>
-        <ComboBox x:Name="Technicians" HorizontalAlignment="Center" Margin="0,66,0,0" VerticalAlignment="Top" Width="120" Text="Technician" SelectionChanged="Technicians_SelectionChanged"/>
-        <Button x:Name="btnRun" Content="Run" HorizontalAlignment="Center" Margin="0,321,0,0" VerticalAlignment="Top" Height="30" Width="120" Click="btnRun_Click"/>
-        <Button x:Name="btnExcelSelect" Content="Select Excel" HorizontalAlignment="Center" Margin="0,135,0,0" VerticalAlignment="Top" Width="120" Click="btnExcelSelect_Click"/>
-        <TextBlock x:Name="ExcelPath" HorizontalAlignment="Center" Margin="0,183,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="74" Width="120" Text="Select an Excel file">
+        <ComboBox x:Name="Technicians" HorizontalAlignment="Center" Margin="0,277,0,0" VerticalAlignment="Top" Width="120" Text="Technician" SelectionChanged="Technicians_SelectionChanged" FontSize="18"/>
+        <Button x:Name="btnRun" Content="Run" HorizontalAlignment="Center" Margin="0,312,0,0" VerticalAlignment="Top" Height="30" Width="120" Click="btnRun_Click" FontSize="18"/>
+        <Button x:Name="btnExcelSelect" Content="Select Excel" HorizontalAlignment="Center" Margin="0,131,0,0" VerticalAlignment="Top" Width="120" Click="btnExcelSelect_Click" Height="30"/>
+        <TextBlock x:Name="ExcelPath" HorizontalAlignment="Center" Margin="0,179,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="74" Width="239" Text="Select an Excel file" TextAlignment="Center">
             <UIElement.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -20,6 +20,7 @@
                 </TransformGroup>
             </UIElement.RenderTransform>
         </TextBlock>
+        <Label x:Name="labelTrigger" Content="Set Triggers" HorizontalAlignment="Center" Margin="0,28,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="20"/>
 
     </Grid>
 </Window>

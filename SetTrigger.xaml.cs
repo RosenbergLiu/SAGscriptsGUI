@@ -3,6 +3,8 @@ using Microsoft.Win32;
 using Npgsql;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Edge;
+using OpenQA.Selenium.Support.UI;
+using SeleniumExtras.WaitHelpers;
 using System;
 using System.Windows;
 using System.Windows.Controls;
@@ -71,6 +73,43 @@ namespace ASKOmaster
             Worksheet ws;
             wb = excel.Workbooks.Open(ExcelPath.Text);
             ws = wb.Worksheets[1];
+
+
+            int row = 1;
+            while (ws.Cells[row, 1].Value2 != null)
+            {
+
+                string part = ws.Cells[row, 1].Value2.ToString();
+                string min = ws.Cells[row, 2].Value2.ToString();
+                string max = ws.Cells[row, 3].Value2.ToString();
+
+                //Input Part
+                for (int i = 0; i < 7; i++)
+                {
+                    driver.FindElement(By.Id("ctl00_ContentPlaceHolder1_dd_izd_sifra_I")).SendKeys(Keys.Backspace);
+                }
+                driver.FindElement(By.Id("ctl00_ContentPlaceHolder1_dd_izd_sifra_I")).SendKeys(part);
+                driver.FindElement(By.Id("ctl00_ContentPlaceHolder1_dd_izd_sifra_I")).SendKeys(Keys.Enter);
+
+                new WebDriverWait(driver, TimeSpan.FromSeconds(20)).Until(ExpectedConditions.ElementIsVisible(By.XPath("//*[@id=\"ctl00_ContentPlaceHolder1_dd_izd_sifra_DDD_L_LBI0T0\"]")));
+                driver.FindElement(By.Id("ctl00_ContentPlaceHolder1_dd_izd_sifra_I")).SendKeys(Keys.Enter);
+                //Input Quantity
+                driver.FindElement(By.Id("ctl00_ContentPlaceHolder1_spMin_I")).SendKeys(Keys.Backspace);
+                driver.FindElement(By.Id("ctl00_ContentPlaceHolder1_spMin_I")).SendKeys(min);
+                driver.FindElement(By.Id("ctl00_ContentPlaceHolder1_spMax_I")).SendKeys(Keys.Backspace);
+                driver.FindElement(By.Id("ctl00_ContentPlaceHolder1_spMax_I")).SendKeys(max);
+
+                //Enter Technician
+
+                driver.FindElement(By.XPath($"//*[@id=\"ctl00_ContentPlaceHolder1_ASPxDropDownEdit1_I\"]")).Clear();
+                driver.FindElement(By.XPath($"//*[@id=\"ctl00_ContentPlaceHolder1_ASPxDropDownEdit1_I\"]")).SendKeys(serviceTechnician);
+                driver.FindElement(By.XPath("//*[@id=\"ctl00_ContentPlaceHolder1_ASPxDropDownEdit1_B-1Img\"]")).Click();
+                driver.FindElement(By.XPath("//*[@id=\"ctl00_ContentPlaceHolder1_ASPxDropDownEdit1_B-1Img\"]")).Click();
+                //Submit
+                driver.FindElement(By.Id("ctl00_ContentPlaceHolder1_btnDodaj")).Click();
+                row++;
+            }
+            wb.Close();
 
         }
 

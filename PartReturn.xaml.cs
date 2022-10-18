@@ -59,7 +59,7 @@ namespace ASKOmaster
                     {
                         Part = reader.GetValue(0).ToString();
                     }
-                    if (Part != "")
+                    if (Part != null)
                     {
                         AddToList(Part);
                         BarCode.Clear();

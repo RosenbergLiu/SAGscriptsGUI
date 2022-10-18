@@ -40,13 +40,13 @@ namespace ASKOmaster
                 string Tech = reader.GetValue(0).ToString();
                 Technicians.Items.Add(Tech);
             }
-    }
+        }
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
             if (BarCode.Text != "")
             {
-                if(BarCode.Text.Length > 6)
+                if (BarCode.Text.Length > 6)
                 {
                     string Part = "";
                     using var conn = new NpgsqlConnection(Properties.Settings.Default.DBstring);
@@ -88,7 +88,7 @@ namespace ASKOmaster
                 {
                     AddToList(BarCode.Text);
                 }
-                
+
             }
         }
 
@@ -147,7 +147,7 @@ namespace ASKOmaster
             BarCode.Clear();
             BarCode.Focus();
             btnUpdate.IsDefault = false;
-            
+
         }
 
         private void btnCancelU_Click(object sender, RoutedEventArgs e)
@@ -214,12 +214,10 @@ namespace ASKOmaster
             MessageBox.Show("Input Done");
         }
 
-        private void TechSelected(object sender, System.EventArgs e)
+
+        private void Technicians_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
-            if (Technicians.Text != "")
-            {
-                btnRun.IsEnabled = true;
-            }
+            btnRun.IsEnabled = true;
         }
     }
 }

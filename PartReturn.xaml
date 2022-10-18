@@ -21,7 +21,7 @@
         <Button x:Name="btnUpdate" Content="Update" HorizontalAlignment="Left" Margin="168,270,0,0" VerticalAlignment="Top" IsDefault="True" Width="114" Click="btnUpdate_Click" Height="34" FontSize="18"/>
         <Button x:Name="btnCancelU" Content="Cancel" HorizontalAlignment="Left" Margin="36,270,0,0" VerticalAlignment="Top" IsDefault="True" Width="80" Click="btnCancelU_Click" Height="34" FontSize="18"/>
         <Button x:Name="btnRun" Content="Run" HorizontalAlignment="Left" Margin="85,689,0,0" VerticalAlignment="Top" Height="34" Width="148" FontSize="18" Click="btnRun_Click"/>
-        <ComboBox x:Name="Technicians" HorizontalAlignment="Left" Margin="85,650,0,0" VerticalAlignment="Top" Width="148" DropDownClosed="TechSelected" Height="34" FontSize="20"/>
+        <ComboBox x:Name="Technicians" HorizontalAlignment="Left" Margin="85,650,0,0" VerticalAlignment="Top" Width="148" Height="34" FontSize="20" SelectionChanged="Technicians_SelectionChanged"/>
         <Label x:Name="PartsReturnLabel" Content="Parts Return" HorizontalAlignment="Left" Margin="101,47,0,0" VerticalAlignment="Top" FontSize="20"/>
     </Grid>
 </Window>

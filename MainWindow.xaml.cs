@@ -41,5 +41,11 @@ namespace ASKOmaster
         private void test_Click(object sender, RoutedEventArgs e)
         {
         }
+
+        private void btnTrigger_Click(object sender, RoutedEventArgs e)
+        {
+            System.Windows.Window w = new SetTrigger();
+            w.Show();
+        }
     }
 }

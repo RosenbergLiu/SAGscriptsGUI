@@ -87,5 +87,10 @@ namespace ASKOmaster
         {
 
         }
+
+        private void btnWorkShop_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

@@ -2,10 +2,13 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Edge;
 using System;
+using System.Diagnostics;
 using System.IO;
 using System.Net;
 using System.Net.Http;
 using System.Windows;
+using System.ComponentModel;
+using System.Linq;
 
 namespace ASKOmaster
 {
@@ -134,6 +137,20 @@ namespace ASKOmaster
             else
             {
                 DriverTestResult.Text = "Edge not installed";
+            }
+        }
+
+        private void btnTestSAP_Click(object sender, RoutedEventArgs e)
+        {
+            bool processExists = Process.GetProcesses().Any(p => p.ProcessName.Contains("SAP Logon for Windows"));
+            if (processExists)
+            {
+                SAPresult.Text = "SAP is running";
+            }
+            else
+            {
+                SAPresult.Text = "SAP is not running";
+                Process.Start("C:\\Program Files (x86)\\SAP\\FrontEnd\\SAPgui\\saplogon.exe");
             }
         }
     }

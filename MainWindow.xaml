@@ -15,6 +15,7 @@
         <Button x:Name="btnTrigger" Content="Set Trigger" HorizontalAlignment="Center" Margin="0,164,0,0" VerticalAlignment="Top" Height="64" Width="212" FontSize="20" Click="btnTrigger_Click"/>
         <Button x:Name="btnPreEmpt" Content="Pre-empt" HorizontalAlignment="Center" Margin="0,233,0,0" VerticalAlignment="Top" Height="64" Width="212" FontSize="20" Click="btnPreEmpt_Click"/>
         <Button x:Name="btnDailyRelease" Content="Daily Release" HorizontalAlignment="Center" Margin="0,302,0,0" VerticalAlignment="Top" Height="64" Width="212" FontSize="20" Click="btnDailyRelease_Click"/>
+        <Button x:Name="btnWorkShop" Content="Workshop Parts" HorizontalAlignment="Center" Margin="0,371,0,0" VerticalAlignment="Top" Height="64" Width="212" FontSize="20" Click="btnWorkShop_Click"/>
 
 
 

@@ -117,5 +117,41 @@ namespace ASKOmaster.Properties {
                 this["DBstring"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string DBresult {
+            get {
+                return ((string)(this["DBresult"]));
+            }
+            set {
+                this["DBresult"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool Database {
+            get {
+                return ((bool)(this["Database"]));
+            }
+            set {
+                this["Database"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool Edge {
+            get {
+                return ((bool)(this["Edge"]));
+            }
+            set {
+                this["Edge"] = value;
+            }
+        }
     }
 }

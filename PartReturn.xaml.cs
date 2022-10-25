@@ -40,6 +40,7 @@ namespace ASKOmaster
                 string Tech = reader.GetValue(0).ToString();
                 Technicians.Items.Add(Tech);
             }
+
         }
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
@@ -88,7 +89,6 @@ namespace ASKOmaster
                 {
                     AddToList(BarCode.Text);
                 }
-
             }
         }
 

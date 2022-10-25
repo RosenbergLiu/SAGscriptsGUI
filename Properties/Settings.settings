@@ -26,5 +26,14 @@
     <Setting Name="DBstring" Type="System.String" Scope="User">
       <Value Profile="(Default)">Host=db;Username=postgres;Password=731797;Database=asko</Value>
     </Setting>
+    <Setting Name="DBresult" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="Database" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="Edge" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -22,8 +22,6 @@ namespace ASKOmaster
             InitializeComponent();
         }
 
-
-
         private void btnSetting_Click(object sender, RoutedEventArgs e)
         {
             btnSetting.BorderBrush = new SolidColorBrush(Colors.Black);
@@ -34,8 +32,12 @@ namespace ASKOmaster
 
         private void btnReturn_Click(object sender, RoutedEventArgs e)
         {
-            System.Windows.Window w = new PartReturn();
-            w.Show();
+            if (isValid())
+            {
+                System.Windows.Window w = new PartReturn();
+                w.Show();
+            }
+            
         }
 
         private void test_Click(object sender, RoutedEventArgs e)
@@ -46,6 +48,44 @@ namespace ASKOmaster
         {
             System.Windows.Window w = new SetTrigger();
             w.Show();
+        }
+
+        public bool isValid()
+        {
+            if (Properties.Settings.Default.Database != true)
+            {
+                MessageBox.Show("Dabatase not connected");
+                return false;
+
+            }
+            else if (Properties.Settings.Default.Login != true)
+            {
+                MessageBox.Show("SAG or GSD user didn't setup");
+                return false;
+            }
+            else if (Properties.Settings.Default.Edge != true)
+            {
+                MessageBox.Show("WebDriver not found");
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        private void btnPreEmpt_Click(object sender, RoutedEventArgs e)
+        {
+            if (isValid())
+            {
+                System.Windows.Window w = new PreEmpt();
+                w.Show();
+            }
+        }
+
+        private void btnDailyRelease_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

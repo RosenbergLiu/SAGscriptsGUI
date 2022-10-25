@@ -1,6 +1,10 @@
-﻿using OpenQA.Selenium;
+﻿using Npgsql;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Edge;
-using System.Collections.Specialized;
+using System;
+using System.IO;
+using System.Net;
+using System.Net.Http;
 using System.Windows;
 
 namespace ASKOmaster
@@ -18,6 +22,12 @@ namespace ASKOmaster
                 UsernameInput.Text = Properties.Settings.Default.Username;
                 PasswordInput.Text = Properties.Settings.Default.Password;
                 LoginTestResult.Text = "Login successful.  " + Properties.Settings.Default.LoginString;
+                
+            }
+            if (Properties.Settings.Default.Database)
+            {
+                DbConnResult.Text = Properties.Settings.Default.DBresult;
+                DbString.Text = Properties.Settings.Default.DBstring;
             }
 
         }
@@ -48,7 +58,7 @@ namespace ASKOmaster
                 driver.Quit();
                 LoginTestResult.Text = "Login successful.  " + Properties.Settings.Default.LoginString;
             }
-            catch (OpenQA.Selenium.NoSuchElementException)
+            catch (System.NullReferenceException)
             {
                 LoginTestResult.Text = "Login failed.  ";
                 Properties.Settings.Default.Reset();
@@ -63,10 +73,68 @@ namespace ASKOmaster
             UsernameInput.Clear();
             PasswordInput.Clear();
             LoginTestResult.Text = "";
-            Properties.Settings.Default.Reset();
+            Properties.Settings.Default.Username = null;
+            Properties.Settings.Default.Password = null;
+            Properties.Settings.Default.LoginString = null;
             Properties.Settings.Default.Login = false;
             Properties.Settings.Default.Save();
         }
 
+        private void btnTestConn_Click(object sender, RoutedEventArgs e)
+        {
+            Properties.Settings.Default.DBstring = DbString.Text;
+            try
+            {
+                using var conn = new NpgsqlConnection(DbString.Text);
+                conn.Open();
+                string command = $"SELECT code,state FROM public.technicians;";
+                var cmd = new NpgsqlCommand(command, conn);
+                cmd.ExecuteReader();
+                DbConnResult.Text = "Database Connected";
+                Properties.Settings.Default.DBresult = "Database Connected";
+                Properties.Settings.Default.Database = true;
+                Properties.Settings.Default.Save();
+            }
+            catch (Exception ex)
+            {
+                DbConnResult.Text = ex.Message;
+            }
+        }
+
+        private void btnTestDriver_Click(object sender, RoutedEventArgs e)
+        {
+
+            IWebDriver driver = new EdgeDriver();
+        }
+
+        private void btnDownloadDriver_Click(object sender, RoutedEventArgs e)
+        {
+            bool EdgeInstalled = false;
+            string EdgeVersion = "unknown";
+            string[] files=Directory.GetDirectories("C:\\Program Files (x86)\\Microsoft\\Edge\\Application");
+            foreach (string file in files)
+            {
+                if ((files[0].Split('\\')[5])[0].Equals('1'))
+                {
+                    EdgeVersion = files[0].Split('\\')[5];
+                    EdgeInstalled = true;
+                }
+            }
+            
+            if (EdgeInstalled)
+            {
+                string remoteUri = "https://msedgedriver.azureedge.net/" + EdgeVersion + "/edgedriver_win64.zip";
+                string fileName = "edgedriver_win64.zip";
+                WebClient wc = new WebClient();
+                wc.DownloadFileTaskAsync(remoteUri, fileName);
+                DriverTestResult.Text = $"WebDriver Version {EdgeVersion} Downloaded";
+                Properties.Settings.Default.Edge = true;
+                Properties.Settings.Default.Save();
+            }
+            else
+            {
+                DriverTestResult.Text = "Edge not installed";
+            }
+        }
     }
 }

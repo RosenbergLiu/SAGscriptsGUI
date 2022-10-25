@@ -5,17 +5,36 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ASKOmaster"
         mc:Ignorable="d"
-        Title="Settings" Height="400" Width="800">
+        Title="Settings" Height="800" Width="800">
     <Grid>
-        <Button x:Name="btnCloseSettings" Content="Close" HorizontalAlignment="Left" Margin="144,311,0,0" VerticalAlignment="Top" Click="btnCloseSettings_Click" Height="27" Width="84" FontSize="16"/>
-        <Grid x:Name="LoginTest" HorizontalAlignment="Left" Margin="39,36,0,0" VerticalAlignment="Top" Width="295" Height="233" Background="#FFF0F0F0">
+        <Button x:Name="btnCloseSettings" Content="Close" HorizontalAlignment="Center" Margin="0,675,0,0" VerticalAlignment="Top" Click="btnCloseSettings_Click" Height="52" Width="470" FontSize="22"/>
+        <Grid x:Name="LoginTest" HorizontalAlignment="Left" Margin="70,36,0,0" VerticalAlignment="Top" Width="295" Height="239" Background="#FFF0F0F0">
             <TextBox x:Name="UsernameInput" HorizontalAlignment="Left" Margin="137,29,0,0" VerticalAlignment="Top" Width="120" FontSize="14" Height="22"/>
             <TextBox x:Name="PasswordInput" HorizontalAlignment="Left" Margin="137,67,0,0" VerticalAlignment="Top" Width="120" FontSize="14" Height="22"/>
             <Button x:Name="btnTestLogin" Content="Test Login" HorizontalAlignment="Left" VerticalAlignment="Top" Click="btnTestLogin_Click" Height="32" Width="106" Margin="30,117,0,0" FontSize="16"/>
-            <TextBlock x:Name="LoginTestResult" HorizontalAlignment="Left" Margin="30,174,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+            <TextBlock x:Name="LoginTestResult" HorizontalAlignment="Center" Margin="0,174,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
             <Button x:Name="btnResetLogin" Content="Reset Login" HorizontalAlignment="Left" Margin="151,117,0,0" VerticalAlignment="Top" Height="32" Width="106" Click="btnResetLogin_Click" FontSize="16"/>
             <Label x:Name="UsernameLabel" Content="SAG Username" HorizontalAlignment="Left" Margin="30,22,0,0" VerticalAlignment="Top" FontSize="14"/>
             <Label x:Name="PasswordLabel" Content="SAG Password" HorizontalAlignment="Left" Margin="30,64,0,0" VerticalAlignment="Top" FontSize="14"/>
+        </Grid>
+        <Grid x:Name="DbConnTest" HorizontalAlignment="Right" Margin="0,36,70,0" VerticalAlignment="Top" Width="295" Height="239" Background="#FFF0F0F0">
+            <TextBox x:Name="DbString" HorizontalAlignment="Center" Margin="0,72,0,0" VerticalAlignment="Top" Width="239" FontSize="14" Height="22" RenderTransformOrigin="0.5,0.5"/>
+            <Button x:Name="btnTestConn" Content="Test Connection" HorizontalAlignment="Center" VerticalAlignment="Top" Click="btnTestConn_Click" Height="32" Width="152" FontSize="16" Margin="0,117,0,0"/>
+            <TextBlock x:Name="DbConnResult" HorizontalAlignment="Center" Margin="0,174,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+            <Label x:Name="DBstringLabel" Content="Database Connection String" HorizontalAlignment="Center" Margin="0,31,0,0" VerticalAlignment="Top" FontSize="14"/>
+        </Grid>
+        <Grid x:Name="DriverTest" HorizontalAlignment="Left" Margin="70,350,0,0" VerticalAlignment="Top" Width="295" Height="239" Background="#FFF0F0F0">
+            <TextBox x:Name="DriverPathInput" HorizontalAlignment="Center" VerticalAlignment="Center" Width="239" FontSize="14" Height="22"/>
+            <Button x:Name="btnTestDriver" Content="Test WebDriver" HorizontalAlignment="Center" VerticalAlignment="Top" Click="btnTestDriver_Click" Height="32" Width="132" Margin="0,141,0,0" FontSize="16"/>
+            <TextBlock x:Name="DriverTestResult" HorizontalAlignment="Center" Margin="0,196,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+            <Label x:Name="DriverLabel" Content="Edge WebDriver Path" HorizontalAlignment="Center" Margin="0,74,0,0" VerticalAlignment="Top" FontSize="14"/>
+            <Button x:Name="btnDownloadDriver" Content="Download Edge WebDriver x64" HorizontalAlignment="Center" VerticalAlignment="Top" Click="btnDownloadDriver_Click" Height="32" Width="238" Margin="0,37,0,0" FontSize="16"/>
+        </Grid>
+        <Grid x:Name="DbConnTest_Copy" HorizontalAlignment="Right" Margin="0,350,70,0" VerticalAlignment="Top" Width="295" Height="239" Background="#FFF0F0F0">
+            <TextBox x:Name="DbString1" HorizontalAlignment="Center" Margin="0,72,0,0" VerticalAlignment="Top" Width="239" FontSize="14" Height="22" RenderTransformOrigin="0.5,0.5"/>
+            <Button x:Name="btnTestConn1" Content="Test Connection" HorizontalAlignment="Center" VerticalAlignment="Top" Click="btnTestConn_Click" Height="32" Width="152" FontSize="16" Margin="0,117,0,0"/>
+            <TextBlock x:Name="DbConnResult1" HorizontalAlignment="Center" Margin="0,174,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+            <Label x:Name="DBstringLabel1" Content="Database Connection String" HorizontalAlignment="Center" Margin="0,31,0,0" VerticalAlignment="Top" FontSize="14"/>
         </Grid>
     </Grid>
 </Window>

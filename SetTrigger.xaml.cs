@@ -6,6 +6,7 @@ using OpenQA.Selenium.Edge;
 using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.WaitHelpers;
 using System;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -22,7 +23,16 @@ namespace ASKOmaster
             InitializeComponent();
             btnRun.IsEnabled = false;
             using var conn = new NpgsqlConnection(Properties.Settings.Default.DBstring);
-            conn.Open();
+            try
+            {
+                conn.Open();
+            }
+            catch (System.Net.Sockets.SocketException)
+            {
+                MessageBox.Show("Cannot connect to the Database");
+            }
+            
+            
             string command = $"SELECT code,state FROM public.technicians;";
             var cmd = new NpgsqlCommand(command, conn);
             var reader = cmd.ExecuteReader();
@@ -60,7 +70,7 @@ namespace ASKOmaster
 
             ////////////////////////Open Page////////////////////////
             IWebDriver driver = new EdgeDriver();
-            driver.Navigate().GoToUrl("https://partners.gorenje.com/sagCC/vracilo_vnos.aspx");
+            driver.Navigate().GoToUrl("https://partners.gorenje.com/sagCC/se_seti_serviserji.aspx");
             driver.FindElement(By.Id("usr")).SendKeys(Properties.Settings.Default.Username);
             driver.FindElement(By.Id("pwd")).SendKeys(Properties.Settings.Default.Password);
 
@@ -74,6 +84,7 @@ namespace ASKOmaster
             wb = excel.Workbooks.Open(ExcelPath.Text);
             ws = wb.Worksheets[1];
 
+            int rowCount = ws.Rows.Count;
 
             int row = 1;
             while (ws.Cells[row, 1].Value2 != null)
@@ -90,8 +101,16 @@ namespace ASKOmaster
                 }
                 driver.FindElement(By.Id("ctl00_ContentPlaceHolder1_dd_izd_sifra_I")).SendKeys(part);
                 driver.FindElement(By.Id("ctl00_ContentPlaceHolder1_dd_izd_sifra_I")).SendKeys(Keys.Enter);
-
-                new WebDriverWait(driver, TimeSpan.FromSeconds(20)).Until(ExpectedConditions.ElementIsVisible(By.XPath("//*[@id=\"ctl00_ContentPlaceHolder1_dd_izd_sifra_DDD_L_LBI0T0\"]")));
+                
+                try
+                {
+                    new WebDriverWait(driver, TimeSpan.FromSeconds(20)).Until(ExpectedConditions.ElementIsVisible(By.XPath("//*[@id=\"ctl00_ContentPlaceHolder1_dd_izd_sifra_DDD_L_LBI0T0\"]")));
+                }
+                catch (NoSuchElementException)
+                {
+                    driver.FindElement(By.Id("ctl00_ContentPlaceHolder1_dd_izd_sifra_I")).Click();
+                }
+                
                 driver.FindElement(By.Id("ctl00_ContentPlaceHolder1_dd_izd_sifra_I")).SendKeys(Keys.Enter);
                 //Input Quantity
                 driver.FindElement(By.Id("ctl00_ContentPlaceHolder1_spMin_I")).SendKeys(Keys.Backspace);
@@ -110,6 +129,8 @@ namespace ASKOmaster
                 row++;
             }
             wb.Close();
+            
+            driver.Close();
 
         }
 

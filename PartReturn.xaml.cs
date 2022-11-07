@@ -60,62 +60,71 @@ namespace ASKOmaster
         {
             if (BarCode.Text != "")
             {
-                if (BarCode.Text.Length > 6)
-                {
-                    
-                    string Part = "";
-                    await using var conn = new NpgsqlConnection(Properties.Settings.Default.DBstring);
-                    conn.Open();
-                    string barcode = BarCode.Text;
-                    string command = $"SELECT part FROM public.parts where barcode={barcode};";
-                    
-                    var cmd = new NpgsqlCommand(command, conn);
-                    await using (var reader =await cmd.ExecuteReaderAsync())
-                    {
-                        while (await reader.ReadAsync())
-                        {
-                            Part = reader.GetValue(0).ToString();
-
-                        }
-                    }
-                    
-                    
-                    if (Part != null && Part !="")
-                    {
-                        
-                        await AddToListAsync(Part);
-                        BarCode.Clear();
-                    }
-                    else
-                    {
-                        if (MessageBox.Show("Do you want to manual input part?", "Confirmation", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
-                        {
-                            PartNum.IsEnabled = true;
-                            btnUpdate.IsEnabled = true;
-                            btnCancelU.IsEnabled = true;
-                            PartNum.Focus();
-                            btnAdd.IsDefault = false;
-                            btnUpdate.IsDefault = true;
-                            btnAdd.IsEnabled = false;
-                            BarCode.IsEnabled = false;
-                        }
-                        else
-                        {
-                            BarCode.Clear();
-                            BarCode.Focus();
-                        }
-                    }
-                }
-                else
+                if (isBarCode.IsChecked == true)
                 {
                     await AddToListAsync(BarCode.Text);
                     BarCode.Clear();
+                }
+                else
+                {
+                    if (BarCode.Text.Length > 6)
+                    {
+
+                        string Part = "";
+                        await using var conn = new NpgsqlConnection(Properties.Settings.Default.DBstring);
+                        conn.Open();
+                        string barcode = BarCode.Text;
+                        string command = $"SELECT part FROM public.parts where barcode={barcode};";
+
+                        var cmd = new NpgsqlCommand(command, conn);
+                        await using (var reader = await cmd.ExecuteReaderAsync())
+                        {
+                            while (await reader.ReadAsync())
+                            {
+                                Part = reader.GetValue(0).ToString();
+
+                            }
+                        }
+
+
+                        if (Part != null && Part != "")
+                        {
+
+                            await AddToListAsync(Part);
+                            BarCode.Clear();
+                        }
+                        else
+                        {
+                            if (MessageBox.Show("Do you want to manual input part?", "Confirmation", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                            {
+                                PartNum.IsEnabled = true;
+                                btnUpdate.IsEnabled = true;
+                                btnCancelU.IsEnabled = true;
+                                PartNum.Focus();
+                                btnAdd.IsDefault = false;
+                                btnUpdate.IsDefault = true;
+                                btnAdd.IsEnabled = false;
+                                BarCode.IsEnabled = false;
+                            }
+                            else
+                            {
+                                BarCode.Clear();
+                                BarCode.Focus();
+                            }
+                        }
+                    }
+                    else
+                    {
+                        await AddToListAsync(BarCode.Text);
+                        BarCode.Clear();
+                    }
                 }
             }
         }
 
         public Task AddToListAsync(string Part)
         {
+
             PartsList.Items.Insert(0, Part);
             StringCollection prParts = new StringCollection();
             foreach (string p in PartsList.Items)

@@ -356,6 +356,7 @@ namespace ASKOmaster
                 driver.FindElement(By.Id("ctl00_ContentPlaceHolder1_txt_min")).Click();
                 driver.FindElement(By.Id("ctl00_ContentPlaceHolder1_btnShrani0")).Click();
             }
+            MessageBox.Show("Input Done");
         }
     }
 }

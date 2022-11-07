@@ -153,5 +153,17 @@ namespace ASKOmaster.Properties {
                 this["Edge"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string EdgeResult {
+            get {
+                return ((string)(this["EdgeResult"]));
+            }
+            set {
+                this["EdgeResult"] = value;
+            }
+        }
     }
 }

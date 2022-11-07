@@ -52,6 +52,7 @@
   <ItemGroup>
     <PackageReference Include="DotNetSeleniumExtras.WaitHelpers" Version="3.11.0" />
     <PackageReference Include="Npgsql" Version="6.0.7" />
+    <PackageReference Include="SapNwRfc" Version="1.4.0" />
     <PackageReference Include="Selenium.Support" Version="4.5.1" />
     <PackageReference Include="Selenium.WebDriver" Version="4.5.1" />
     <PackageReference Include="Selenium.WebDriver.MicrosoftDriver" Version="17.17134.0" />

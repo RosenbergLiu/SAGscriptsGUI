@@ -35,8 +35,9 @@
                 <RowDefinition Height="50*"/>
                 <RowDefinition Height="189*"/>
             </Grid.RowDefinitions>
-            <Button x:Name="btnTestSAP" Content="Test SAP" HorizontalAlignment="Center" VerticalAlignment="Top" Click="btnTestSAP_Click" Height="32" Width="152" FontSize="16" Margin="0,67,0,0" Grid.Row="1"/>
+            <Button x:Name="btnStartSAP" Content="Start SAP" HorizontalAlignment="Center" VerticalAlignment="Top" Click="btnStartSAP_Click" Height="32" Width="152" FontSize="16" Margin="0,67,0,0" Grid.Row="1"/>
             <TextBlock x:Name="SAPresult" HorizontalAlignment="Center" Margin="0,124,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Row="1"/>
+            <Button x:Name="btnTestSAP" Content="Test SAP" HorizontalAlignment="Center" VerticalAlignment="Top" Click="btnTestSAP_Click" Height="32" Width="152" FontSize="16" Grid.Row="1"/>
         </Grid>
     </Grid>
 </Window>

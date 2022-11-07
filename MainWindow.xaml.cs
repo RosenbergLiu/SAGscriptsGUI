@@ -92,5 +92,10 @@ namespace ASKOmaster
         {
 
         }
+
+        private void btnStockTake_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

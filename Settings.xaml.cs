@@ -9,6 +9,8 @@ using System.Net.Http;
 using System.Windows;
 using System.ComponentModel;
 using System.Linq;
+using SapNwRfc;
+using OpenQA.Selenium.DevTools.V106.Overlay;
 
 namespace ASKOmaster
 {
@@ -25,7 +27,7 @@ namespace ASKOmaster
                 UsernameInput.Text = Properties.Settings.Default.Username;
                 PasswordInput.Text = Properties.Settings.Default.Password;
                 LoginTestResult.Text = "Login successful.  " + Properties.Settings.Default.LoginString;
-                
+                DriverTestResult.Text = Properties.Settings.Default.EdgeResult;
             }
             if (Properties.Settings.Default.Database)
             {
@@ -130,6 +132,7 @@ namespace ASKOmaster
                 string fileName = "edgedriver_win64.zip";
                 WebClient wc = new WebClient();
                 wc.DownloadFileTaskAsync(remoteUri, fileName);
+                Properties.Settings.Default.EdgeResult= $"WebDriver Version {EdgeVersion} Downloaded";
                 DriverTestResult.Text = $"WebDriver Version {EdgeVersion} Downloaded";
                 Properties.Settings.Default.Edge = true;
                 Properties.Settings.Default.Save();
@@ -137,10 +140,15 @@ namespace ASKOmaster
             else
             {
                 DriverTestResult.Text = "Edge not installed";
+                Properties.Settings.Default.EdgeResult = "Edge not installed";
+                Properties.Settings.Default.Edge = true;
+                Properties.Settings.Default.Save();
             }
         }
 
-        private void btnTestSAP_Click(object sender, RoutedEventArgs e)
+
+
+        private void btnStartSAP_Click(object sender, RoutedEventArgs e)
         {
             bool processExists = Process.GetProcesses().Any(p => p.ProcessName.Contains("SAP Logon for Windows"));
             if (processExists)
@@ -151,7 +159,12 @@ namespace ASKOmaster
             {
                 SAPresult.Text = "SAP is not running";
                 Process.Start("C:\\Program Files (x86)\\SAP\\FrontEnd\\SAPgui\\saplogon.exe");
+                
             }
+        }
+        private void btnTestSAP_Click(object sender, RoutedEventArgs e)
+        {
+           
         }
     }
 }

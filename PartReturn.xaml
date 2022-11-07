@@ -20,8 +20,14 @@
         <Button x:Name="btnClear" Content="Clear" HorizontalAlignment="Left" Margin="439,57,0,0" VerticalAlignment="Top" Height="34" Width="80" FontSize="18" Click="btnClear_Click"/>
         <Button x:Name="btnUpdate" Content="Update" HorizontalAlignment="Left" Margin="168,270,0,0" VerticalAlignment="Top" IsDefault="True" Width="114" Click="btnUpdate_Click" Height="34" FontSize="18"/>
         <Button x:Name="btnCancelU" Content="Cancel" HorizontalAlignment="Left" Margin="36,270,0,0" VerticalAlignment="Top" IsDefault="True" Width="80" Click="btnCancelU_Click" Height="34" FontSize="18"/>
-        <Button x:Name="btnRun" Content="Run" HorizontalAlignment="Left" Margin="85,689,0,0" VerticalAlignment="Top" Height="34" Width="148" FontSize="18" Click="btnRun_Click"/>
-        <ComboBox x:Name="Technicians" HorizontalAlignment="Left" Margin="85,650,0,0" VerticalAlignment="Top" Width="148" Height="34" FontSize="20" SelectionChanged="Technicians_SelectionChanged"/>
-        <Label x:Name="PartsReturnLabel" Content="Parts Return" HorizontalAlignment="Left" Margin="101,47,0,0" VerticalAlignment="Top" FontSize="20"/>
+        <Button x:Name="btnRun" Content="Run" HorizontalAlignment="Left" Margin="84,664,0,0" VerticalAlignment="Top" Height="34" Width="148" FontSize="18" Click="btnRun_Click"/>
+        <ComboBox x:Name="Technicians" HorizontalAlignment="Left" Margin="84,625,0,0" VerticalAlignment="Top" Width="148" Height="34" FontSize="20" SelectionChanged="Technicians_SelectionChanged"/>
+        <Label x:Name="PartsReturnLabel" Content="Parts Return" HorizontalAlignment="Left" Margin="101,47,0,0" VerticalAlignment="Top" FontSize="22" FontWeight="Bold"/>
+        <Button x:Name="btnExcel" Content="Import from Excel" HorizontalAlignment="Left" Margin="34,0,0,0" VerticalAlignment="Center" Height="34" Width="248" FontSize="18" Click="btnExcel_Click" RenderTransformOrigin="0.628,1.507"/>
+        <Button x:Name="btnExport" Content="Export to Excel" HorizontalAlignment="Left" Margin="34,420,0,0" VerticalAlignment="Top" Height="34" Width="248" FontSize="18" Click="btnExport_Click" RenderTransformOrigin="0.628,1.507"/>
+        <Slider HorizontalAlignment="Left" Margin="141,540,0,0" VerticalAlignment="Top" Width="57.8" Height="20" SmallChange="10"/>
+        <Label x:Name="Label1" Content="PartNum" HorizontalAlignment="Left" Margin="55,533,0,0" VerticalAlignment="Top" FontSize="16"/>
+        <Label x:Name="Label2" Content="BarCode" HorizontalAlignment="Left" Margin="204,533,0,0" VerticalAlignment="Top" FontSize="16"/>
+        <Button x:Name="btnStockTake" Content="Stock Take" HorizontalAlignment="Left" Margin="84,703,0,0" VerticalAlignment="Top" Height="34" Width="148" FontSize="18" Click="btnStockTake_Click"/>
     </Grid>
 </Window>

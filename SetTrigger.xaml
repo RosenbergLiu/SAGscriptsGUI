@@ -7,9 +7,9 @@
         mc:Ignorable="d"
         Title="SetTrigger" Height="400" Width="300">
     <Grid>
-        <ComboBox x:Name="Technicians" HorizontalAlignment="Center" Margin="0,247,0,0" VerticalAlignment="Top" Width="120" Text="Technician" SelectionChanged="Technicians_SelectionChanged" FontSize="18"/>
-        <Button x:Name="btnRun" Content="Run" HorizontalAlignment="Center" Margin="0,282,0,0" VerticalAlignment="Top" Height="30" Width="120" Click="btnRun_Click" FontSize="18"/>
-        <Button x:Name="btnExcelSelect" Content="Select Excel" HorizontalAlignment="Center" Margin="0,88,0,0" VerticalAlignment="Top" Width="120" Click="btnExcelSelect_Click" Height="30"/>
+        <ComboBox x:Name="Technicians" HorizontalAlignment="Center" Margin="0,243,0,0" VerticalAlignment="Top" Height="34" Width="148" Text="Technician" SelectionChanged="Technicians_SelectionChanged" FontSize="18"/>
+        <Button x:Name="btnRun" Content="Run" HorizontalAlignment="Center" Margin="0,282,0,0" VerticalAlignment="Top" Height="34" Width="148" Click="btnRun_Click" FontSize="18"/>
+        <Button x:Name="btnExcelSelect" Content="Select Excel" HorizontalAlignment="Center" Margin="0,88,0,0" VerticalAlignment="Top" Width="148" Click="btnExcelSelect_Click" Height="34" FontSize="18"/>
         <TextBlock x:Name="ExcelPath" HorizontalAlignment="Center" Margin="0,136,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="74" Width="239" Text="Select an Excel file" TextAlignment="Center">
             <UIElement.RenderTransform>
                 <TransformGroup>
@@ -20,7 +20,7 @@
                 </TransformGroup>
             </UIElement.RenderTransform>
         </TextBlock>
-        <Label x:Name="labelTrigger" Content="Set Triggers" HorizontalAlignment="Center" Margin="0,28,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="20"/>
+        <Label x:Name="labelTrigger" Content="Set Triggers" HorizontalAlignment="Center" Margin="0,28,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="22"/>
 
     </Grid>
 </Window>

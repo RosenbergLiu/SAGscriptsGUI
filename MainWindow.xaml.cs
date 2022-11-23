@@ -97,5 +97,11 @@ namespace ASKOmaster
         {
 
         }
+
+        private void btnDBLookup_Click(object sender, RoutedEventArgs e)
+        {
+            System.Windows.Window w = new DBLookUp();
+            w.Show();
+        }
     }
 }

@@ -11,6 +11,10 @@ using System.Windows;
 using System.Threading.Tasks;
 using System.Windows.Media.Media3D;
 using System.Reflection.Metadata;
+using System.ComponentModel;
+using System.Media;
+using System.IO;
+using System.Reflection;
 
 namespace ASKOmaster
 {
@@ -118,6 +122,12 @@ namespace ASKOmaster
                         await AddToListAsync(BarCode.Text);
                         BarCode.Clear();
                     }
+                }
+                using (FileStream stream = File.Open(@"AddSound.wav", FileMode.Open))
+                {
+                    SoundPlayer myNewSound = new SoundPlayer(stream);
+                    myNewSound.Load();
+                    myNewSound.Play();
                 }
             }
         }
@@ -341,11 +351,22 @@ namespace ASKOmaster
             var selectState = new SelectElement(driver.FindElement(By.Id("ctl00_ContentPlaceHolder1_drpCenter")));
             selectState.SelectByText(State);
 
-            var selectUnit = new SelectElement(driver.FindElement(By.Id("ctl00_ContentPlaceHolder1_drpEnota")));
-            selectUnit.SelectByText(serviceUnit);
 
-            var selectTechnician = new SelectElement(driver.FindElement(By.Id("ctl00_ContentPlaceHolder1_DropDownList5")));
-            selectTechnician.SelectByText(serviceTechnician);
+            if(serviceUnit!="Nick De Poilly") {
+                var selectUnit = new SelectElement(driver.FindElement(By.Id("ctl00_ContentPlaceHolder1_drpEnota")));
+                selectUnit.SelectByText(serviceUnit);
+
+                var selectTechnician = new SelectElement(driver.FindElement(By.Id("ctl00_ContentPlaceHolder1_DropDownList5")));
+                selectTechnician.SelectByText(serviceTechnician);
+            }
+            else
+            {
+                var selectUnit = new SelectElement(driver.FindElement(By.Id("ctl00_ContentPlaceHolder1_drpEnota")));
+                selectUnit.SelectByValue("22404");
+                var selectTechnician = new SelectElement(driver.FindElement(By.Id("ctl00_ContentPlaceHolder1_DropDownList5")));
+                selectTechnician.SelectByValue("54557");
+            }
+            
 
 
 

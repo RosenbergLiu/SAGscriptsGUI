@@ -22,6 +22,8 @@
     <None Remove="AddSound.wav" />
     <None Remove="false.wav" />
     <None Remove="msedgedriver.exe" />
+    <None Remove="SAP_Scripts\test.vbs" />
+    <None Remove="test.vbs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -52,14 +54,21 @@
     <Content Include="msedgedriver.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="SAP_Scripts\test.vbs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="test.vbs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="CsvHelper" Version="30.0.1" />
     <PackageReference Include="DotNetSeleniumExtras.WaitHelpers" Version="3.11.0" />
-    <PackageReference Include="Npgsql" Version="6.0.7" />
+    <PackageReference Include="Npgsql" Version="7.0.0" />
     <PackageReference Include="SapNwRfc" Version="1.4.0" />
-    <PackageReference Include="Selenium.Support" Version="4.5.1" />
-    <PackageReference Include="Selenium.WebDriver" Version="4.5.1" />
+    <PackageReference Include="Selenium.Support" Version="4.6.0" />
+    <PackageReference Include="Selenium.WebDriver" Version="4.6.0" />
     <PackageReference Include="Selenium.WebDriver.MicrosoftDriver" Version="17.17134.0" />
   </ItemGroup>
 

@@ -4,13 +4,9 @@ using OpenQA.Selenium.Edge;
 using System;
 using System.Diagnostics;
 using System.IO;
-using System.Net;
-using System.Net.Http;
-using System.Windows;
-using System.ComponentModel;
 using System.Linq;
-using SapNwRfc;
-using OpenQA.Selenium.DevTools.V106.Overlay;
+using System.Net;
+using System.Windows;
 
 namespace ASKOmaster
 {
@@ -116,7 +112,7 @@ namespace ASKOmaster
         {
             bool EdgeInstalled = false;
             string EdgeVersion = "unknown";
-            string[] files=Directory.GetDirectories("C:\\Program Files (x86)\\Microsoft\\Edge\\Application");
+            string[] files = Directory.GetDirectories("C:\\Program Files (x86)\\Microsoft\\Edge\\Application");
             foreach (string file in files)
             {
                 if ((files[0].Split('\\')[5])[0].Equals('1'))
@@ -125,14 +121,14 @@ namespace ASKOmaster
                     EdgeInstalled = true;
                 }
             }
-            
+
             if (EdgeInstalled)
             {
                 string remoteUri = "https://msedgedriver.azureedge.net/" + EdgeVersion + "/edgedriver_win64.zip";
                 string fileName = "edgedriver_win64.zip";
                 WebClient wc = new WebClient();
                 wc.DownloadFileTaskAsync(remoteUri, fileName);
-                Properties.Settings.Default.EdgeResult= $"WebDriver Version {EdgeVersion} Downloaded";
+                Properties.Settings.Default.EdgeResult = $"WebDriver Version {EdgeVersion} Downloaded";
                 DriverTestResult.Text = $"WebDriver Version {EdgeVersion} Downloaded";
                 Properties.Settings.Default.Edge = true;
                 Properties.Settings.Default.Save();
@@ -159,12 +155,27 @@ namespace ASKOmaster
             {
                 SAPresult.Text = "SAP is not running";
                 Process.Start("C:\\Program Files (x86)\\SAP\\FrontEnd\\SAPgui\\saplogon.exe");
-                
+
             }
         }
         private void btnTestSAP_Click(object sender, RoutedEventArgs e)
         {
-           
+
+        }
+
+        public void RunVBS(string FileName)
+        {
+            using (Process p = new Process())
+            {
+                p.StartInfo = new ProcessStartInfo()
+                {
+                    UseShellExecute = true,
+                    WorkingDirectory = Environment.CurrentDirectory + "\\SAP_Scripts",
+                    FileName = FileName
+                };
+
+                p.Start();
+            }
         }
     }
 }

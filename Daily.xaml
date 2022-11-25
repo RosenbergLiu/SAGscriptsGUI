@@ -11,6 +11,7 @@
         <Button x:Name="btnImport" Content="Import to DB" HorizontalAlignment="Left" Margin="295,174,0,0" VerticalAlignment="Top" Height="69" Width="171" Click="btnImport_Click" FontSize="20"/>
         <Button x:Name="btnGet" Content="GetCSV" HorizontalAlignment="Left" Margin="295,70,0,0" VerticalAlignment="Top" Height="69" Width="171" Click="GetCSV_Click" FontSize="20"/>
         <Button x:Name="btnUpdate" Content="Update Jobs" HorizontalAlignment="Left" Margin="295,314,0,0" VerticalAlignment="Top" Height="36" Width="171" Click="btnUpdate_Click"/>
+        <Button x:Name="test" Content="Button" HorizontalAlignment="Left" Margin="153,126,0,0" VerticalAlignment="Top" Height="117" Width="118" Click="test_Click"/>
 
     </Grid>
 </Window>

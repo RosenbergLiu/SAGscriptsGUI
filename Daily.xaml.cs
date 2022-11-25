@@ -17,7 +17,7 @@ namespace ASKOmaster
     /// <summary>
     /// Interaction logic for Daily.xaml
     /// </summary>
-    public partial class Daily : Window
+    public partial class Daily : System.Windows.Window
     {
         public Daily()
         {
@@ -53,12 +53,12 @@ namespace ASKOmaster
             {
                 if (File.Exists(folder + @"\ASPxGridView1.csv"))
                 {
-                    driver.Close();
+                    driver.Quit();
                     downloaded = true; break;
                 }
                 else
                 {
-                    Thread.Sleep(5);
+                    Thread.Sleep(1000);
                 }
             }
             PgBar.Value = 100;
@@ -71,13 +71,16 @@ namespace ASKOmaster
             var reader = new StreamReader(CSV);
             var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
             var dr = new CsvDataReader(csv);
-            var dt = new DataTable();
+            var dt = new System.Data.DataTable();
             dt.Load(dr);
             int RowCount = dt.Rows.Count;
             int progress = 1;
+            string command = "";
+            await using var conn = new NpgsqlConnection(Properties.Settings.Default.DBstring);
+            conn.Open();
             foreach (DataRow row in dt.Rows)
             {
-                string command="";
+
                 try
                 {
                     string DATEstr = row["Claim date"].ToString();
@@ -97,28 +100,27 @@ namespace ASKOmaster
                         string PARTS;
                         if (PARTstr == "")
                         {
-                           PARTS = "null";
+                            PARTS = "null";
                         }
                         else
                         {
                             string[] PARTele = PARTstr.Split(", ");
-                            PARTS = "ARRAY["; 
+                            PARTS = "ARRAY[";
                             foreach (string p in PARTele)
                             {
-                                PARTS=PARTS+p.Split(' ')[0]+",";
+                                PARTS = PARTS + p.Split(' ')[0] + ",";
                             }
-                            PARTS=PARTS.Remove(PARTS.Length-1);
+                            PARTS = PARTS.Remove(PARTS.Length - 1);
                             PARTS = PARTS + "]";
                         }
-                        
+
                         string MODEL = row["Art./model number"].ToString();
                         string ART = row["Code"].ToString();
                         string TYPE = row["Type of Repair"].ToString().Split(" ")[0];
 
-                        
 
-                        await using var conn = new NpgsqlConnection(Properties.Settings.Default.DBstring);
-                        conn.Open();
+
+
                         command =
                             $"INSERT INTO " +
                             $"public.jobs (idoss,wos,claim_date,tech,parts,model,art,repair_type) " +
@@ -137,36 +139,97 @@ namespace ASKOmaster
                     }
 
 
-                    var ratio = (((double)progress *1000 / RowCount));
-                    PgBar.Value= Math.Ceiling(ratio)/10;
+                    var ratio = (((double)progress * 1000 / RowCount));
+                    PgBar.Value = Math.Ceiling(ratio) / 10;
                     progress++;
 
 
 
                 }
-                catch (Exception ex)
+                catch (System.Exception ex)
                 {
-                    MessageBox.Show(ex.Message+"======================="+command);
+                    MessageBox.Show(ex.Message + "=======================" + command);
                 }
 
 
 
             }
-            MessageBox.Show("Import Done");
-        }
+            conn.Close();
+            try
+            {
+                File.Delete(CSV);
+            }
+            catch (System.Exception ex) { MessageBox.Show(ex.Message); }
 
+            MessageBox.Show("Import Done");
+
+        }
+        public async void UpdateDelivery(string idoss, IWebDriver webDriver)
+        {
+
+        }
 
         public async void update()
         {
 
             IWebDriver driver1 = new EdgeDriver();
-            IWebDriver driver2 = new EdgeDriver();
+            //IWebDriver driver2 = new EdgeDriver();
             await iniJobPage(driver1);
-            await iniListPage(driver2);
+            //await iniListPage(driver2);
 
+
+
+
+            await using var conn = new NpgsqlConnection(Properties.Settings.Default.DBstring);
+            conn.Open();
+            string command = @"SELECT idoss,parts,tech FROM public.jobs WHERE idoss=14038444";
+            var cmd = new NpgsqlCommand(command, conn);
+            await using (var reader = await cmd.ExecuteReaderAsync())
+            {
+                while (await reader.ReadAsync())
+                {
+                    /////For each record of W job//////
+                    string JobNumber = reader.GetValue(0).ToString();
+                    if (JobNumber != null)
+                    {
+                        string WOS = "R";
+
+                        List<string> SAP = getSAP(JobNumber, driver1);
+                        foreach (string s in SAP)
+                        {
+                            int CaseResult = await CheckSAP(s, driver1);
+                            if (CaseResult == 1)
+                            {
+                                WOS = "RPOOS";
+                            }
+
+                        }
+                        driver1.FindElement(By.Id("ctl00_ContentPlaceHolder1_ASPxComboBox1_I")).Clear();
+                        driver1.FindElement(By.Id("ctl00_ContentPlaceHolder1_ASPxComboBox1_I")).SendKeys($"{WOS} - Return parts confirmed");
+                        driver1.FindElement(By.Id("ctl00_ContentPlaceHolder1_ASPxComboBox1_I")).SendKeys(Keys.Enter);
+
+                        await using var conn2 = new NpgsqlConnection(Properties.Settings.Default.DBstring);
+                        conn2.Open();
+                        string UpdateCommand = $"UPDATE public.jobs SET wos='{WOS}' WHERE idoss={JobNumber};";
+                        var UpdateCmd = new NpgsqlCommand(UpdateCommand, conn2);
+                        await UpdateCmd.ExecuteNonQueryAsync();
+
+
+                    }
+                }
+            }
         }
 
-        public async Task iniJobPage(IWebDriver driver)
+        public Task iniJobPage(IWebDriver driver)
+        {
+            driver.Navigate().GoToUrl("https://partners.gorenje.com/sagCC/sredina.aspx");
+            driver.FindElement(By.Id("usr")).SendKeys(Properties.Settings.Default.Username);
+            driver.FindElement(By.Id("pwd")).SendKeys(Properties.Settings.Default.Password);
+            driver.FindElement(By.Id("btnPrijava")).Click();
+            return Task.CompletedTask;
+        }
+
+        public Task iniListPage(IWebDriver driver)
         {
             driver.Navigate().GoToUrl("https://partners.gorenje.com/sagCC/sredina.aspx");
             driver.FindElement(By.Id("usr")).SendKeys(Properties.Settings.Default.Username);
@@ -176,26 +239,9 @@ namespace ASKOmaster
 
             var selectState = new SelectElement(driver.FindElement(By.Id("ctl00_ContentPlaceHolder1_drpCenter")));
             selectState.SelectByValue("0");
-            var selectType = new SelectElement(driver.FindElement(By.Id("ctl00_ContentPlaceHolder1_ddStatusiFilter")));
-            selectType.SelectByValue("R");
             driver.FindElement(By.Id("ctl00_ContentPlaceHolder1_dtDatumFilter_B-1Img")).Click();
             driver.FindElement(By.Id("ctl00_ContentPlaceHolder1_dtDatumFilter_DDD_C_BC")).Click();
-
-        }
-
-        public async Task iniListPage(IWebDriver driver)
-        {
-            driver.Navigate().GoToUrl("https://partners.gorenje.com/sagCC/sredina.aspx");
-            driver.FindElement(By.Id("usr")).SendKeys(Properties.Settings.Default.Username);
-            driver.FindElement(By.Id("pwd")).SendKeys(Properties.Settings.Default.Password);
-            driver.FindElement(By.Id("btnPrijava")).Click();
-            driver.Navigate().GoToUrl("https://partners.gorenje.com/sagCC/potni_pregled1.aspx");
-
-            var selectState = new SelectElement(driver.FindElement(By.Id("ctl00_ContentPlaceHolder1_drpCenter")));
-            selectState.SelectByValue("0");
-            driver.FindElement(By.Id("ctl00_ContentPlaceHolder1_dtDatumFilter_B-1Img")).Click();
-            driver.FindElement(By.Id("ctl00_ContentPlaceHolder1_dtDatumFilter_DDD_C_BC")).Click();
-
+            return Task.CompletedTask;
         }
 
 
@@ -213,7 +259,98 @@ namespace ASKOmaster
 
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
-            
+            update();
+        }
+
+        public async Task<int> CheckSAP(string SAP, IWebDriver driver)
+        {
+            int Case = 2;///no record
+            bool HasRecord = false;
+            await using var conn = new NpgsqlConnection(Properties.Settings.Default.DBstring);
+            conn.Open();
+            string command = $"SELECT release_date,part,delivery_note FROM public.release WHERE sap={SAP};";
+            var cmd = new NpgsqlCommand(command, conn);
+            await using (var reader = await cmd.ExecuteReaderAsync())
+            {
+
+                while (await reader.ReadAsync())
+                {
+                    HasRecord = true;
+                    var DN = reader.GetValue(2).ToString();
+                    string part = reader.GetValue(1).ToString();
+                    if (DN == "")
+                    {
+                        Case = 1;
+                        driver.FindElement(By.Id("ctl00_ContentPlaceHolder1_tbKomentar_I")).SendKeys($"{part} not in stock. Checking Workshop");
+
+                        driver.FindElement(By.Id("ctl00_ContentPlaceHolder1_btnKomentarDodaj")).Click();
+
+                    }
+
+
+                }
+            }
+            if (HasRecord == false)
+            {
+                Case = 0;
+            }
+            return Case;
+        }
+
+        public List<string> getSAP(string idoss, IWebDriver driver)
+        {
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(30));
+
+            driver.Navigate().GoToUrl($"https://partners.gorenje.com/sagCC/oss.aspx?id_oss={idoss}&akcija=zakljucek");
+            List<string> SAPs = new List<string>();
+            bool HaveNextPage = true;
+            /////Analyze Each Page/////
+            while (HaveNextPage == true)
+            {
+                IWebElement tbl = driver.FindElement(By.Id("ctl00_ContentPlaceHolder1_gvNarocenMat_DXMainTable"));
+                IReadOnlyList<IWebElement> rows = tbl.FindElements(By.ClassName("dxgvDataRow_MetropolisBlue"));
+
+                /////Analyze Each Row/////
+                foreach (IWebElement row in rows)
+                {
+                    IReadOnlyList<IWebElement> cols = row.FindElements(By.ClassName("dxgv"));
+                    string SAP = cols[7].Text;
+                    MessageBox.Show(SAP);
+                    if (SAPs.Contains(SAP) == false)
+                    {
+                        SAPs.Add(SAP);
+                    }
+                }
+
+                /////If have next Page/////
+                string[] PageCount = driver.FindElement(By.XPath(@"//*[@id=""ctl00_ContentPlaceHolder1_gvNarocenMat_DXPagerBottom""]/b[1]")).Text.Split(" ");
+                if (PageCount[1] != PageCount[3])
+                {
+                    driver.FindElement(By.Id("ctl00_ContentPlaceHolder1_gvNarocenMat_DXPagerBottom_PBN")).Click();
+
+                    bool Went = false;
+                    while (Went == false)
+                    {
+                        Thread.Sleep(1000);
+                        string[] NewPageCount = driver.FindElement(By.XPath(@"//*[@id=""ctl00_ContentPlaceHolder1_gvNarocenMat_DXPagerBottom""]/b[1]")).Text.Split(" ");
+
+                        if (NewPageCount[1] != PageCount[1])
+                        {
+                            Went = true;
+                        }
+                    }
+
+                }
+                else
+                {
+                    HaveNextPage = false;
+                }
+            }
+            return SAPs;
+        }
+
+        private void test_Click(object sender, RoutedEventArgs e)
+        {
         }
     }
 }

@@ -6,6 +6,7 @@ using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.WaitHelpers;
 using System;
 using System.Collections.Specialized;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -20,6 +21,7 @@ namespace ASKOmaster
         public MainWindow()
         {
             InitializeComponent();
+            VersionNo.Text=Assembly.GetExecutingAssembly().GetName().Version.ToString();
         }
 
         private void btnSetting_Click(object sender, RoutedEventArgs e)

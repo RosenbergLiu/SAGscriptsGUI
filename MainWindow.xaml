@@ -18,6 +18,7 @@
         <Button x:Name="btnWorkShop" Content="Workshop Parts" HorizontalAlignment="Center" Margin="0,414,0,0" VerticalAlignment="Top" Height="64" Width="212" FontSize="20" Click="btnWorkShop_Click"/>
         <Button x:Name="btnDBLookup" Content="Database Lookup" HorizontalAlignment="Center" Margin="0,483,0,0" VerticalAlignment="Top" Height="64" Width="212" FontSize="20" Click="btnDBLookup_Click"/>
         <TextBlock x:Name="Title" HorizontalAlignment="Center" Margin="0,58,0,0" TextWrapping="Wrap" Text="Roshan's Master Script" VerticalAlignment="Top" FontSize="24" FontWeight="Bold"/>
+        <TextBlock x:Name="VersionNo" HorizontalAlignment="Center" Margin="0,658,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
 
 
 

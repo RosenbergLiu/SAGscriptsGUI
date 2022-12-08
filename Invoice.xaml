@@ -1,0 +1,16 @@
+﻿<Window x:Class="ASKOmaster.Invoice"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ASKOmaster"
+        mc:Ignorable="d"
+        Title="Invoice" Height="400" Width="400">
+    <Grid Margin="0,88,0,0">
+        <DataGrid x:Name="DNlist" d:ItemsSource="{d:SampleData ItemCount=5}"/>
+        <TextBox x:Name="DN" HorizontalAlignment="Left" Margin="35,-52,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="20"/>
+        <Button x:Name="btnAdd" Content="Add" HorizontalAlignment="Left" Margin="168,-52,0,0" VerticalAlignment="Top" Width="40" Height="20" IsDefault="True" Click="btnAdd_Click"/>
+        <Border BorderBrush="Black" BorderThickness="1"/>
+        <Button x:Name="btnRun" Content="Run" HorizontalAlignment="Left" Margin="282,-52,0,0" VerticalAlignment="Top" Width="60" Height="20"/>
+    </Grid>
+</Window>

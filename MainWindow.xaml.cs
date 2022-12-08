@@ -111,5 +111,29 @@ namespace ASKOmaster
             System.Windows.Window w = new Daily();
             w.Show();
         }
+
+        private void btnReport_Click(object sender, RoutedEventArgs e)
+        {
+            System.Windows.Window w = new Report();
+            w.Show();
+        }
+
+        private void btnReleaseTech_Click(object sender, RoutedEventArgs e)
+        {
+            System.Windows.Window w = new ReleaseTech();
+            w.Show();
+        }
+
+        private void btnImport_Click(object sender, RoutedEventArgs e)
+        {
+            System.Windows.Window w = new Import();
+            w.Show();
+        }
+
+        private void btnPrintInvoice_Click(object sender, RoutedEventArgs e)
+        {
+            System.Windows.Window w = new Invoice();
+            w.Show();
+        }
     }
 }

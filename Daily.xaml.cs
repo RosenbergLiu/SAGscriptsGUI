@@ -181,7 +181,7 @@ namespace ASKOmaster
             }
             IWebElement DateInput = driver.FindElement(By.XPath($"//*[@id=\"ctl00_ContentPlaceHolder1_ASPxGridView1_cell0_36_txtBoxX{idoss}_I\"]"));
 
-            for (int i = 1; i < 10; i++)
+            for (int i = 1; i < 11; i++)
             {
                 DateInput.SendKeys(Keys.Backspace);
             }
@@ -206,7 +206,7 @@ namespace ASKOmaster
         {
             string day = TargetDate.ToString("d");
             var daySet = day.Split("/");
-            if (daySet[0]=="1"| daySet[0] == "2"| daySet[0] == "3")
+            if (daySet[0] == "1" | daySet[0] == "2" | daySet[0] == "3")
             {
                 daySet[0] = daySet[0] + "/";
             }
@@ -322,9 +322,9 @@ namespace ASKOmaster
 
             for (int i = 1; i < output.Count + 1; i++)
             {
-                ws.Cells[i, 1] = output[i-1][0];
-                ws.Cells[i, 2] = output[i-1][1];
-                ws.Cells[i, 3] = output[i-1][2];
+                ws.Cells[i, 1] = output[i - 1][0];
+                ws.Cells[i, 2] = output[i - 1][1];
+                ws.Cells[i, 3] = output[i - 1][2];
             }
 
             driver1.Close();
@@ -365,10 +365,11 @@ namespace ASKOmaster
 
 
             //*[@id="ctl00_ContentPlaceHolder1_dtDatumFilter_I"]
-            for (int i= 1;i< 10; i++)
+            for (int i = 1; i < 11; i++)
             {
                 driver.FindElement(By.Id("ctl00_ContentPlaceHolder1_dtDatumFilter_I")).SendKeys(Keys.Backspace);
             }
+            driver.FindElement(By.Id("ctl00_ContentPlaceHolder1_dtDatumFilter_I")).SendKeys(Keys.Enter);
             driver.FindElement(By.Id("ctl00_ContentPlaceHolder1_txt_oss")).SendKeys("11111111");
             driver.FindElement(By.Id("ctl00_ContentPlaceHolder1_txt_oss")).Click();
             return Task.CompletedTask;

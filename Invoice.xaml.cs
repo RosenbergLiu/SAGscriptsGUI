@@ -22,6 +22,7 @@ namespace ASKOmaster
         public Invoice()
         {
             InitializeComponent();
+            
         }
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)

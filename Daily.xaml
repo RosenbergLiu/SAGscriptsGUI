@@ -10,8 +10,7 @@
         <ProgressBar x:Name="PgBar" HorizontalAlignment="Center" Height="18" Margin="0,383,0,0" VerticalAlignment="Top" Width="705" LargeChange="0.1"/>
         <Button x:Name="btnImport" Content="Import to DB" HorizontalAlignment="Left" Margin="295,174,0,0" VerticalAlignment="Top" Height="69" Width="171" Click="btnImport_Click" FontSize="20"/>
         <Button x:Name="btnGet" Content="GetCSV" HorizontalAlignment="Left" Margin="295,70,0,0" VerticalAlignment="Top" Height="69" Width="171" Click="GetCSV_Click" FontSize="20"/>
-        <Button x:Name="btnUpdate" Content="Update Jobs" HorizontalAlignment="Left" Margin="295,314,0,0" VerticalAlignment="Top" Height="36" Width="171" Click="btnUpdate_Click"/>
-        <Button x:Name="test" Content="Button" HorizontalAlignment="Left" Margin="153,126,0,0" VerticalAlignment="Top" Height="117" Width="118" Click="test_Click"/>
+        <Button x:Name="btnUpdate" Content="Update Jobs" HorizontalAlignment="Left" Margin="255,284,0,0" VerticalAlignment="Top" Height="60" Width="251" Click="btnUpdate_Click" FontSize="20"/>
 
     </Grid>
 </Window>

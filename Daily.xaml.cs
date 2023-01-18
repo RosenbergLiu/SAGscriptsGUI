@@ -93,7 +93,7 @@ namespace ASKOmaster
                     if (DATEstr != null)
                     {
                         string[] DATEele = DATEstr.Split('/');
-                        if (DATEele[2] == "2022")
+                        if (DATEele[2] == "2023"|| DATEele[2] == "2022" )
                         {
                             string DATE = DATEele[2] + "-" + DATEele[1] + "-" + DATEele[0];
 
